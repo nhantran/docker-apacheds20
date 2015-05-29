@@ -3,10 +3,18 @@
 /opt/apacheds/bin/apacheds.sh start
 
 # Wait for apacheds ready
-sleep 15
+sleep 60
 
 if [ "$#" == "1" ]; then
 	NEWPASS=$1
 	sed -i -e "s/userPassword:/userPassword:$NEWPASS/g" /opt/apacheds/bin/updatePassword.ldif
 	ldapmodify -x -h localhost -p 10389 -D "uid=admin,ou=system" -w secret -c -f /opt/apacheds/bin/updatePassword.ldif
 fi
+
+PID=$(pgrep -f "/opt/jdk/bin/java")
+
+echo "PID=$PID"
+
+ps -ef
+
+fg $PID

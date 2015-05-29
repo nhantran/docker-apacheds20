@@ -13,4 +13,6 @@ ADD updatePassword.ldif apacheds/bin/updatePassword.ldif
 
 EXPOSE 10389
 
-CMD ["/opt/apacheds/bin/startApacheDS"]
+ENTRYPOINT ["/opt/apacheds/bin/startApacheDS"]
+
+CMD []
